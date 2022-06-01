@@ -1,0 +1,214 @@
+@font-face {
+    font-family: 'Rimouski';
+    src: url(/assets/fonts/Rimouski.otf) format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Thebombsound';
+    src: url(/assets/fonts/thebombsound.ttf) format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    position: relative;
+    margin: 0px;
+    background-color: skyblue;
+    font-family: 'Dosis', serif;
+}
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px; 
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+img:not(.static) {
+    position: absolute;
+    animation-name: move;
+    animation-delay: 0ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.rainbow {
+    position: fixed;
+    width: 100vw;
+    height: 300px;
+    bottom: 25px;
+    left: -20px;
+}
+
+.rainbow > img {
+    height: 350px;
+    width: 140vw;
+    animation: vibrate 1.5s linear infinite;
+}
+
+.unicorn {
+    position: fixed;
+    width: 387px;
+    height: 256px;
+    bottom: 100px;
+    animation: run 10s ease-in-out infinite;
+}
+
+.coins-1 {
+    position: fixed;
+    width: 100vw;
+    height: 100px;
+    left: 0px;
+    bottom: 200px;
+}
+.coins-2 {
+    position: fixed;
+    width: 100vw;
+    height: 100px;
+    left: 0px;
+    bottom: 175px;
+}
+.coins-3 {
+    position: fixed;
+    width: 100vw;
+    height: 100px;
+    left: 0px;
+    bottom: 140px;
+}
+
+.bg-cloud {
+    position: fixed;
+    width: 100vw;
+    height: 200px;
+    bottom: 300px;
+    left: 0px;
+}
+
+.cloud-1 {
+    position: fixed;
+    width: 100vw;
+    height: 270px;
+    bottom: 235px;
+    left: 0px;
+}
+.cloud-2 {
+    position: fixed;
+    width: 100vw;
+    height: 240px;
+    bottom: 180px;
+    left: 0px;
+}
+.cloud-1 > img {
+    height: 270px;
+}
+.cloud-2 > img {
+    height: 240px;
+}
+
+.fg-cloud {
+    position: fixed;
+    width: 100vw;
+    height: 200px;
+    bottom: -20px;
+    left: 0px;
+}
+
+.float-cloud-1 {
+    position: fixed;
+    width: 100vw;
+    height: 400px;
+    top: 0px;
+    left: 0px;
+}
+.float-cloud-2 {
+    position: fixed;
+    width: 100vw;
+    height: 400px;
+    top: 100px;
+    left: 0px;
+}
+.float-cloud-3 {
+    position: fixed;
+    width: 100vw;
+    height: 400px;
+    top: 200px;
+    left: 0px;
+}
+
+@keyframes move {
+    0% { left: calc(100vw + 400px); }
+    100% { left: -1000px; }
+}
+
+@keyframes vibrate {
+    0% { margin-top: 0px; }
+    25% { margin-top: 5px; margin-right: 15px; }
+    50% { margin-top: -7; margin-right: -12px; }
+    75% { margin-top: 8px; margin-right: 5px; }
+    100% { margin-top: 0px; margin-right: 0px; }
+}
+
+@keyframes run {
+    0% { left: 100px; }
+    10% { left: 350px; }
+    20% { left: 120px; }
+    30% { left: 200px; }
+    40% { left: 140px; }
+    50% { left: 240px; }
+    60% { left: 75px; }
+    70% { left: 200px; }
+    80% { left: 120px; }
+    90% { left: 180px; }
+    100% { left: 100px; }
+}
+
+
+.data {
+    width: 100vw;
+    min-height: 50px;
+    padding: 50px 25px;
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    display: flex;
+    box-sizing: border-box;
+    backdrop-filter: blur(15px);
+
+    background-color: rgba(0,0,0, 0.3);
+}
+
+.data-item {
+    flex: 1;
+    font-size: 50px;
+    text-align: left;
+    color: rgb(255, 255, 232);
+    padding: 0px 0px 0px 40px;
+    text-shadow: 2px 2px 2px white;
+}
+
+.data-item > span {
+    display: block;
+}
+
+.data-item > .label {
+    font-size: 28px;
+}
+
+.data-item > .statistic {
+    font-size: 80px;
+    color: gold;
+}
+
+.data-item > .date {
+    font-size: 40px;
+}
+
+.data-item > .time {
+    font-size: 60px;
+}
