@@ -38,6 +38,18 @@ img:not(.static) {
     animation-iteration-count: infinite;
 }
 
+.banner {
+    width: 750px;
+    height: 750px;
+    position: fixed;
+    top: 250px;
+    right: 75px;
+}
+.banner > img {
+    width: 750px;
+    height: 750px;
+}
+
 .rainbow {
     position: fixed;
     width: 100vw;
