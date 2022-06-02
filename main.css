@@ -40,15 +40,14 @@ img:not(.static) {
 
 .banner {
     width: 750px;
-    height: 750px;
     position: fixed;
-    top: 100px;
+    top: 50%;
     right: 50%;
+    margin-top: -240px;
     margin-right: -375px;
 }
 .banner > img {
     width: 750px;
-    height: 750px;
 }
 
 .rainbow {
