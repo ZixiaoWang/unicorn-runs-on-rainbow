@@ -1,7 +1,9 @@
 window.checkTimeTimeout = 0;
 
-const BG_CLOUDS = [1,2,3,4].map(index => `assets/bg-cloud-${index}.png`);
-const FG_CLOUDS = [1,2,3,4,5].map(index => `assets/cloud-${index}.png`);
+// const BG_CLOUDS = [1,2,3,4].map(index => `assets/bg-cloud-${index}.png`);
+// const FG_CLOUDS = [1,2,3,4,5].map(index => `assets/cloud-${index}.png`);
+const BG_CLOUDS = [1,2,3,4,5,6,7,8,9].map(index => `assets/realcloud${index}.png`);
+const FG_CLOUDS = [1,2,3,4,5,6,7,8,9].map(index => `assets/realcloud${index}.png`);
 const FLOAT_CLOUDS = [1,2,3,4,5,6,7,8,9,10].map(index => `assets/float-cloud-${index}.png`);
 const RAINBOW = "assets/rainbow.png";
 const UNICORN = "assets/unicorn.gif";
@@ -23,6 +25,7 @@ const UNICORN_CONTAINER = document.querySelector(".unicorn");
 const RAINBOW_CONTAINER = document.querySelector(".rainbow");
 const BULLETS_CONTAINER = document.querySelector(".bullets");
 
+const TEXT_COLORS = ["red", "orange", "yellow", "green", "cyan"];
 
 const generateImg = (paths, duration) => {
     const img = document.createElement("img");
@@ -45,21 +48,8 @@ const generateImg = (paths, duration) => {
 const generateBullet = (text, index) => {
     const div = document.createElement("div");
     div.classList.add("bullet");
-    const fontSize = Math.round(Math.random() * 6 + 50) + "px";
-    const animationDuration = Math.round(Math.random() * 10 + 30);
-    const top = (index % 5) * 70 + "px";
-
-    div.style.fontSize = fontSize;
-    div.style.animationDuration = animationDuration + "s";
-    div.style.top = top;
     div.textContent = text;
-
-    div.addEventListener("load", () => {
-        setTimeout(() => {
-            div.parentElement.removeChild(div);
-        }, animationDuration)
-    })
-
+    div.style.color = TEXT_COLORS[index % TEXT_COLORS.length];
     return div;
 }
 
@@ -149,18 +139,23 @@ const renderButtlets = () => {
         "Olivier’s Skateboard 101 - Olivier ",
         "Exam Prep/Tips for CSCP (Certified Supply Chain Professionals) - Mengmeng Zeng",
     ];
-
-    const render = (index) => {
-        const text = projects[index % projects.length];
-        const div = generateBullet(text, index);
-        BULLETS_CONTAINER.appendChild(div);
-        setTimeout(() => {
-            render(index+1)
-        }, 3000 + Math.round(Math.random() * 1000));
-    }
     
+    projects.forEach((project, index) => {
+        const div = generateBullet(project, index);
+        BULLETS_CONTAINER.appendChild(div);
+    });
 
-    render(0);
+    let left = 0;
+    const move = () => {
+        BULLETS_CONTAINER.style.left = left + "px";
+        left -= 4;
+        if (left <= -1 * (BULLETS_CONTAINER.getBoundingClientRect().width - window.innerWidth)) {
+            left = 0;
+        }
+        window.requestAnimationFrame(move);
+    }
+
+    move();
 }
 
 checkTime();
