@@ -19,9 +19,9 @@ const FLOAT_CLOUD_CONTAINER_3 = document.querySelector(".float-cloud-3");
 const COINS_CONTAINER_1 = document.querySelector(".coins-1");
 const COINS_CONTAINER_2 = document.querySelector(".coins-2");
 const COINS_CONTAINER_3 = document.querySelector(".coins-3");
-
 const UNICORN_CONTAINER = document.querySelector(".unicorn");
 const RAINBOW_CONTAINER = document.querySelector(".rainbow");
+const BULLETS_CONTAINER = document.querySelector(".bullets");
 
 
 const generateImg = (paths, duration) => {
@@ -42,7 +42,32 @@ const generateImg = (paths, duration) => {
     return img;
 }
 
+const generateBullet = (text, index) => {
+    const div = document.createElement("div");
+    div.classList.add("bullet");
+    const fontSize = Math.round(Math.random() * 6 + 50) + "px";
+    const animationDuration = Math.round(Math.random() * 10 + 30);
+    const top = (index % 5) * 70 + "px";
+
+    div.style.fontSize = fontSize;
+    div.style.animationDuration = animationDuration + "s";
+    div.style.top = top;
+    div.textContent = text;
+
+    div.addEventListener("load", () => {
+        setTimeout(() => {
+            div.parentElement.removeChild(div);
+        }, animationDuration)
+    })
+
+    return div;
+}
+
 const makeItAnimated = (container, paths) => {
+    if (!container) {
+        return null;
+    }
+
     const duration = Math.round(Math.random() * 6000 + 6000);
     const img = generateImg(paths, duration);
     container.appendChild(img);
@@ -68,9 +93,9 @@ makeItAnimated(BG_CLOUD_CONTAINER, BG_CLOUDS);
 makeItAnimated(CLOUD_CONTAINER_1, FG_CLOUDS);
 makeItAnimated(CLOUD_CONTAINER_2, FG_CLOUDS);
 makeItAnimated(FG_CLOUD_CONTAINER, FG_CLOUDS);
-makeItAnimated(FLOAT_CLOUD_CONTAINER_1, FLOAT_CLOUDS);
-makeItAnimated(FLOAT_CLOUD_CONTAINER_2, FLOAT_CLOUDS);
-makeItAnimated(FLOAT_CLOUD_CONTAINER_3, FLOAT_CLOUDS);
+// makeItAnimated(FLOAT_CLOUD_CONTAINER_1, FLOAT_CLOUDS);
+// makeItAnimated(FLOAT_CLOUD_CONTAINER_2, FLOAT_CLOUDS);
+// makeItAnimated(FLOAT_CLOUD_CONTAINER_3, FLOAT_CLOUDS);
 coinAnimated(COINS_CONTAINER_1);
 coinAnimated(COINS_CONTAINER_2);
 coinAnimated(COINS_CONTAINER_3);
@@ -111,6 +136,34 @@ const updateData = () => {
     document.getElementById("donation").textContent = query["donation"] || query["donations"] || 0;
 }
 
+const renderButtlets = () => {
+    const projects = [
+        "(Project) Violette’s Bedtime Stories - (FlexAngel)  Violette Zhuang",
+        "Sophia’s cold brew coffee - Sophia Xu",
+        "Ryan’s free ride service - Ryan Zhang",
+        "Public Speaking with Ken - Ken Fong",
+        "Sophia’s Squash Sparring Service - Sophia Xu",
+        "Hiking with Ken - Ken Fong",
+        "Dog parenting 101 - Vikki Yao",
+        "Cara’s Super Natural Experience Sharing - Cara Steenstra",
+        "Olivier’s Skateboard 101 - Olivier ",
+        "Exam Prep/Tips for CSCP (Certified Supply Chain Professionals) - Mengmeng Zeng",
+    ];
+
+    const render = (index) => {
+        const text = projects[index % projects.length];
+        const div = generateBullet(text, index);
+        BULLETS_CONTAINER.appendChild(div);
+        setTimeout(() => {
+            render(index+1)
+        }, 3000 + Math.round(Math.random() * 1000));
+    }
+    
+
+    render(0);
+}
+
 checkTime();
 updateClock();
 updateData();
+renderButtlets();

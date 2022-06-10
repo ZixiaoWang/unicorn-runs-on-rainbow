@@ -185,9 +185,9 @@ img:not(.static) {
 .data {
     width: 100vw;
     min-height: 50px;
-    padding: 50px 25px;
+    padding: 25px 25px;
     position: fixed;
-    top: 50px;
+    top: 0px;
     left: 0px;
     display: flex;
     box-sizing: border-box;
@@ -224,4 +224,33 @@ img:not(.static) {
 
 .data-item > .time {
     font-size: 60px;
+}
+
+
+.bullets{
+    width: 100px;
+    height: 300px;
+    position: fixed;
+    top: 200px;
+    left: 0px;
+}
+.bullets > .bullet {
+    position: absolute;
+    top: 10px;
+    padding: 12px;
+    color: white;
+    text-shadow: 0px 0px 24px rgba(0,0,0, 0.8);
+    font-size: 50px;
+    font-weight: bolder;
+    white-space: nowrap;
+    /* text-transform: uppercase; */
+    animation-name: bullet-animation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 25s;
+}
+
+@keyframes bullet-animation {
+    0% { left: 200vw; }
+    100% { left: -200vw; }
 }
