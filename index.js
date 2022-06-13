@@ -6,7 +6,8 @@ const BG_CLOUDS = [1,2,3,4,5,6,7,8,9].map(index => `assets/realcloud${index}.png
 const FG_CLOUDS = [1,2,3,4,5,6,7,8,9].map(index => `assets/realcloud${index}.png`);
 const FLOAT_CLOUDS = [1,2,3,4,5,6,7,8,9,10].map(index => `assets/float-cloud-${index}.png`);
 const RAINBOW = "assets/rainbow.png";
-const UNICORN = "assets/unicorn.gif";
+// const UNICORN = "assets/unicorn.gif";
+const UNICORN = "assets/unicorn_with_wings.gif";
 const COINS = "assets/coins.gif";
 const BACKGROUNDS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24].map(num => `assets/background-0${num}.jpg`);
 
@@ -38,7 +39,7 @@ const generateImg = (paths, duration) => {
         img.src = paths[randomIndex];
     }
 
-    if (/rainbow\.png$|unicorn\.gif$/.test(img.src)) {
+    if (/rainbow\.png$|unicorn\.gif|unicorn_with_wings\.gif$/.test(img.src)) {
         img.classList.add("static");
     }
     img.style.animationDuration = (animationDuration / 1000).toFixed(1) + "s";
