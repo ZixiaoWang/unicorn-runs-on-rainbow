@@ -218,6 +218,25 @@ img:not(.static) {
     color: gold;
 }
 
+.data-item > .statistic.is-active {
+    font-size: 100px;
+    margin-top: -20px;
+    color: gold;
+    font-weight: 700;
+    text-shadow: 0px 0px 24px gold;
+    animation: text-color-change 2s linear infinite;
+}
+
+@keyframes text-color-change {
+    0% { color: gold; }
+    16% { color: rgb(255, 250, 219); }
+    32% { color: rgb(255, 250, 219); }
+    48% { color: gold; }
+    64% { color: gold; }
+    82% { color: rgb(255, 250, 219); }
+    100% { color: gold }
+}
+
 .data-item > .date {
     font-size: 40px;
 }

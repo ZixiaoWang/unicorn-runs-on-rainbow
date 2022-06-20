@@ -104,7 +104,6 @@ const checkTime = (...targetTime) => {
   window.clearTimeout(window.checkTimeTimeout);
   const now = targetTime ? new Date(...targetTime) : new Date();
   const hourIndex = now.getHours();
-  console.log({ now, hourIndex });
   BACKGROUND_CONTAINER.style.backgroundImage = `url(${BACKGROUNDS[hourIndex]})`;
   window.checkTimeTimeout = setTimeout(checkTime, 1000 * 60 * 30);
 };
@@ -133,12 +132,19 @@ const updateData = () => {
     query[key] = value;
   });
 
+  const donation = query["donation"] || query["donations"] || "0"
+
   document.getElementById("participants").textContent =
     query["participant"] || query["participants"] || 0;
   document.getElementById("projects").textContent =
     query["project"] || query["projects"] || 0;
-  document.getElementById("donation").textContent =
-    query["donation"] || query["donations"] || 0;
+  document.getElementById("donation").textContent = donation;
+    
+
+  console.log(Number(donation))
+  if (!Number.isNaN(Number(donation)) && Number(donation) >= 8888) {
+    document.getElementById("donation").parentElement.classList.add("is-active")
+  }
 };
 
 const renderButtlets = () => {
